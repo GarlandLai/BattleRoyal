@@ -13,7 +13,7 @@ class Bcolors:
 
 
 class Person:
-    def __int__(self, hp, mp, atk, df, magic):
+    def __init__(self, hp, mp, atk, df, magic):
         self.maxhp = hp
         self.hp = hp
         self.maxmp = mp
