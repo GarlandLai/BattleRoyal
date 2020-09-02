@@ -33,3 +33,10 @@ while running:
     enemy_dmg = enemy.generate_damage()
     player.take_damage(enemy_dmg)
     print("Enemy attacks for", enemy_dmg, ".", "Player HP is", player.get_hp())
+
+    if enemy.get_hp() == 0:
+        print(Bcolors.OKGREEN + "YOU HAVE DEFEATED THE ENEMY. YOU WIN!" + Bcolors.ENDC)
+        running = False
+    elif player.get_hp() == 0:
+        print(Bcolors.OKGREEN + "YOU HAVE 0 HP. YOU HAVE BEEN DEFEATED!" + Bcolors.ENDC)
+        running = False
