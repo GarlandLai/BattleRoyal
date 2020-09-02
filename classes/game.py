@@ -38,6 +38,12 @@ class Person:
             self.hp = 0
         return self.hp
 
+    def heal(self, dmg):
+        self.hp -= dmg
+        if self.hp < 0:
+            self.hp = 0
+        return self.hp
+
     def get_hp(self):
         return self.hp
 
@@ -53,11 +59,11 @@ class Person:
     def reduce_mp(self, cost):
         self.mp -= cost
 
-    def get_spell_name(self, i):
-        return self.magic[i]["name"]
-
-    def get_spell_mp_cost(self, i):
-        return self.magic[i]["cost"]
+    # def get_spell_name(self, i):
+    #     return self.magic[i]["name"]
+    #
+    # def get_spell_mp_cost(self, i):
+    #     return self.magic[i]["cost"]
 
     def choose_action(self):
         i = 1
