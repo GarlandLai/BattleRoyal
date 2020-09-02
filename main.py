@@ -31,7 +31,7 @@ while running:
     if index == 0:
         dmg = player.generate_damage()
         enemy.take_damage(dmg)
-        print("You attacked for", dmg, "points of damage.")
+        print(Bcolors.OKBLUE + Bcolors.BOLD + "You attacked for", dmg, "points of damage." + Bcolors.ENDC)
     elif index == 1:
         player.choose_magic()
         magic_choice = int(input("Choose magic:")) - 1
@@ -47,13 +47,13 @@ while running:
 
         player.reduce_mp(spell.cost)
         enemy.take_damage(magic_dmg)
-        print(Bcolors.OKBLUE + "\n" + spell + " deals", str(magic_dmg), "points of damage" + Bcolors.ENDC)
+        print(Bcolors.OKBLUE + "\n" + spell.name + " deals", str(magic_dmg), "points of damage" + Bcolors.ENDC)
 
     enemy_choice = 1
 
     enemy_dmg = enemy.generate_damage()
     player.take_damage(enemy_dmg)
-    print("Enemy attacks for", enemy_dmg, "points of damage")
+    print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks for", enemy_dmg, "points of damage" + Bcolors.ENDC)
 
     print("_______________________________")
     print("Enemy HP:", Bcolors.FAIL + str(enemy.get_hp()) + "/" + str(enemy.get_max_hp()) + Bcolors.ENDC + "\n")
