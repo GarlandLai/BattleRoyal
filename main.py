@@ -9,18 +9,18 @@ meteor = Spell("Meteor Shower", 20, 200, "black")
 quake = Spell("Earthquake", 14, 140, "black")
 
 # Create White Magic
-cure = Spell("Cure", 12, 120, "white")
-cura = Spell("Cura", 18, 200, "white")
+heal = Spell("Health Potion", 12, 120, "white")
+max_heal = Spell("Max Heal Potion", 18, 200, "white")
 
 # Instantiate People
-player = Person(460, 65, 60, 34, [fire, lightning, water, meteor, quake, cure, cura])
+player = Person(460, 65, 60, 34, [fire, lightning, water, meteor, quake, heal, max_heal])
 
 enemy = Person(1200, 65, 45, 25, [fire, lightning, water, meteor, quake])
 
 running = True
 i = 0
 
-print(Bcolors.FAIL + Bcolors.BOLD + "AN ENEMY ATTACKS!" + Bcolors.ENDC)
+print(Bcolors.FAIL + Bcolors.BOLD + "Get Ready! The battle begins!" + Bcolors.ENDC)
 
 while running:
     print("======================")
