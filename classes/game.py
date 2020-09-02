@@ -44,7 +44,7 @@ class Person:
     def get_max_hp(self):
         return self.maxhp
 
-    def mp(self):
+    def get_mp(self):
         return self.mp
 
     def get_max_mp(self):
@@ -56,7 +56,7 @@ class Person:
     def get_spell_name(self, i):
         return self.magic[i]["name"]
 
-    def spell_mp_cost(self, i):
+    def get_spell_mp_cost(self, i):
         return self.magic[i]["cost"]
 
     def choose_action(self):
