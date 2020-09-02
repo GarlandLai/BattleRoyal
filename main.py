@@ -15,10 +15,6 @@ cura = Spell("Cura", 18, 200, "white")
 # Instantiate People
 player = Person(460, 65, 60, 34, [fire, lightning, water, meteor, quake, cure, cura])
 
-# print("Attack Damage:", player.generate_damage())
-# print("Spell Damage:", player.generate_spell_damage(1))
-# print("Spell Damage:", player.generate_spell_damage(2))
-
 enemy = Person(1200, 65, 45, 25, [fire, lightning, water, meteor, quake])
 
 running = True
