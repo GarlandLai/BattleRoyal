@@ -1,5 +1,6 @@
 from classes.game import Person, Bcolors
 from classes.magic import Spell
+from classes.inventory import Item
 
 # Create Black Magic
 fire = Spell("Wild Fire", 12, 120, "black")
@@ -9,13 +10,25 @@ meteor = Spell("Meteor Shower", 20, 200, "black")
 quake = Spell("Earthquake", 14, 140, "black")
 
 # Create White Magic
-heal = Spell("Health Potion", 12, 120, "white")
-max_heal = Spell("Max Heal Potion", 18, 200, "white")
+cure = Spell("Cure", 12, 120, "white")
+cura = Spell("Cura", 18, 200, "white")
+
+# Create some items
+potion = Item("Potion", "potion", "Heals 50 HP", 50)
+hipotion = Item("Hi-Potion", "potion", "Heals 100 HP", 100)
+ultrapotion = Item("Ultra Potion", "potion", "Heals 500 HP", 500)
+elixer = Item("Elixer", 'elixer', "Fully restores HP/MP of one party member", 9999)
+megaelixer = Item("MegaElixer", 'elixer', "Fully restores HP/MP of one party member", 9999)
+
+grenade = Item("Grenade", 'attack', "Deals 500 damage", 500)
+
+
+player_spells = [fire, lightning, water, meteor, quake, cure, cura]
+player_items = [potion, hipotion, ultrapotion, elixer, megaelixer, grenade]
 
 # Instantiate People
-player = Person(460, 65, 60, 34, [fire, lightning, water, meteor, quake, heal, max_heal])
-
-enemy = Person(1200, 65, 45, 25, [fire, lightning, water, meteor, quake])
+player = Person(460, 65, 60, 34, player_spells, player_items)
+enemy = Person(1200, 65, 45, 25, [], [])
 
 running = True
 i = 0
@@ -25,7 +38,7 @@ print(Bcolors.FAIL + Bcolors.BOLD + "Get Ready! The battle begins!" + Bcolors.EN
 while running:
     print("======================")
     player.choose_action()
-    choice = input("Choose action:")
+    choice = input("Choose action: ")
     index = int(choice) - 1
 
     if index == 0:
@@ -34,7 +47,7 @@ while running:
         print(Bcolors.OKBLUE + Bcolors.BOLD + "You attacked for", dmg, "points of damage." + Bcolors.ENDC)
     elif index == 1:
         player.choose_magic()
-        magic_choice = int(input("Choose magic:")) - 1
+        magic_choice = int(input("Choose magic: ")) - 1
 
         spell = player.magic[magic_choice]
         magic_dmg = spell.generate_damage()
@@ -54,6 +67,10 @@ while running:
             enemy.take_damage(magic_dmg)
             print(Bcolors.OKBLUE + "\n" + spell.name + "deals", str(magic_dmg), "points of damage", Bcolors.ENDC)
 
+    elif index == 2:
+        player.choose_item()
+        item_choice = int(input("Choose item: ")) - 1
+
     enemy_choice = 1
 
     enemy_dmg = enemy.generate_damage()
@@ -64,6 +81,7 @@ while running:
     print("Enemy HP:", Bcolors.FAIL + str(enemy.get_hp()) + "/" + str(enemy.get_max_hp()) + Bcolors.ENDC + "\n")
     print("Your HP:", Bcolors.OKGREEN + str(player.get_hp()) + "/" + str(player.get_max_hp()) + Bcolors.ENDC + "\n")
     print("Your MP:", Bcolors.OKBLUE + str(player.get_mp()) + "/" + str(player.get_max_mp()) + Bcolors.ENDC + "\n")
+
     if enemy.get_hp() == 0:
         print(Bcolors.OKGREEN + "YOU HAVE DEFEATED THE ENEMY. YOU WIN!" + Bcolors.ENDC)
         running = False
