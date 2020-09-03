@@ -34,7 +34,7 @@ class Person:
         return self.hp
 
     def heal(self, dmg):
-        self.hp -= dmg
+        self.hp += dmg
         if self.hp < 0:
             self.hp = 0
         return self.hp
