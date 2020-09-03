@@ -34,10 +34,13 @@ class Person:
         return self.hp
 
     def heal(self, dmg):
+        print("health", self.hp)
+        print("dmg", dmg)
         self.hp += dmg
-        if self.hp < 0:
-            self.hp = 0
-        return self.hp
+        print("new hp", self.hp + dmg)
+
+        if self.hp > self.maxhp:
+            self.hp = self.maxhp
 
     def get_hp(self):
         return self.hp
