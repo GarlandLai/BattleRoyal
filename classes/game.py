@@ -34,11 +34,8 @@ class Person:
         return self.hp
 
     def heal(self, dmg):
-        print("health", self.hp)
-        print("dmg", dmg)
         self.hp += dmg
-        print("new hp", self.hp + dmg)
-
+        # this if statement is causing issues. Wont return the maxhp..
         if self.hp > self.maxhp:
             self.hp = self.maxhp
 
