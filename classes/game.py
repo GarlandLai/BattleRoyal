@@ -36,7 +36,6 @@ class Person:
 
     def heal(self, dmg):
         self.hp += dmg
-        # this if statement is causing issues. Won't return the max hp..
         if self.hp > self.maxhp:
             self.hp = self.maxhp
 
