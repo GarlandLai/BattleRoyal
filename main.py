@@ -24,7 +24,9 @@ grenade = Item("Grenade", 'attack', "Deals 500 damage", 500)
 
 
 player_spells = [fire, lightning, water, meteor, quake, cure, cura]
-player_items = [potion, hipotion, ultrapotion, elixer, megaelixer, grenade]
+player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity": 5},
+                {"item": ultrapotion, "quantity": 5}, {"item": elixer, "quantity": 5},
+                {"item": megaelixer, "quantity": 2}, {"item": grenade, "quantity": 5}]
 
 # Instantiate People
 player = Person(460, 65, 60, 34, player_spells, player_items)
@@ -77,7 +79,14 @@ while running:
         if item_choice == -1:
             continue
 
-        item = player.items[item_choice]
+        # Check to make sure we have item
+        if player.items[item_choice]["quantity"] == 0:
+            print(Bcolors.FAIL + "\n" + "None left...." + Bcolors.ENDC)
+            continue
+
+        # Reduces items when used
+        item = player.items[item_choice]["item"]
+        player.items[item_choice]["quantity"] -= 1
 
         if item.type == "potion":
             player.heal(item.prop)

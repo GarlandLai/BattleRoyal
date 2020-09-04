@@ -1,6 +1,7 @@
 import random
 import pprint
 
+
 class Bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -72,5 +73,6 @@ class Person:
         i = 1
         print("\n" + Bcolors.OKGREEN + Bcolors.BOLD + "ITEMS:" + Bcolors.ENDC)
         for item in self.items:
-            print("    " + str(i) + ".", item.name, ":", item.description, " (x5)")
+            print("    " + str(i) + ".", item["item"].name + ":", item["item"].description,
+                  " (x" + str(item["quantity"]) + ")")
             i += 1
