@@ -52,7 +52,7 @@ while running:
 
     for player in players:
         player.choose_action()
-        choice = input("Choose action: ")
+        choice = input("    Choose action: ")
         index = int(choice) - 1
 
         if index == 0:
@@ -61,7 +61,7 @@ while running:
             print(Bcolors.OKBLUE + Bcolors.BOLD + "You attacked for", dmg, "points of damage." + Bcolors.ENDC)
         elif index == 1:
             player.choose_magic()
-            magic_choice = int(input("Choose magic: ")) - 1
+            magic_choice = int(input("    Choose magic: ")) - 1
 
             if magic_choice == -1:
                 continue
@@ -86,7 +86,7 @@ while running:
 
         elif index == 2:
             player.choose_item()
-            item_choice = int(input("Choose item: ")) - 1
+            item_choice = int(input("    Choose item: ")) - 1
 
             if item_choice == -1:
                 continue

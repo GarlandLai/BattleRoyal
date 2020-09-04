@@ -58,23 +58,24 @@ class Person:
 
     def choose_action(self):
         i = 1
-        print("\n" + Bcolors.OKBLUE + Bcolors.BOLD + "ACTIONS:" + Bcolors.ENDC)
+        print("\n" + "    " + Bcolors.BOLD + self.name + Bcolors.ENDC)
+        print(Bcolors.OKBLUE + Bcolors.BOLD + "    ACTIONS:" + Bcolors.ENDC)
         for item in self.actions:
-            print("    " + str(i) + ":", item)
+            print("        " + str(i) + ":", item)
             i += 1
 
     def choose_magic(self):
         i = 1
-        print("\n" + Bcolors.OKBLUE + Bcolors.BOLD + "MAGIC:" + Bcolors.ENDC)
+        print("\n" + Bcolors.OKBLUE + Bcolors.BOLD + "    MAGIC:" + Bcolors.ENDC)
         for spell in self.magic:
-            print("    " + str(i) + ":", spell.name, "(cost:", str(spell.cost) + ")")
+            print("        " + str(i) + ":", spell.name, "(cost:", str(spell.cost) + ")")
             i += 1
 
     def choose_item(self):
         i = 1
-        print("\n" + Bcolors.OKGREEN + Bcolors.BOLD + "ITEMS:" + Bcolors.ENDC)
+        print("\n" + Bcolors.OKGREEN + Bcolors.BOLD + "    ITEMS:" + Bcolors.ENDC)
         for item in self.items:
-            print("    " + str(i) + ".", item["item"].name + ":", item["item"].description,
+            print("        " + str(i) + ".", item["item"].name + ":", item["item"].description,
                   " (x" + str(item["quantity"]) + ")")
             i += 1
 
