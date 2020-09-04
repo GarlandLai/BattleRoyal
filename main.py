@@ -2,6 +2,18 @@ from classes.game import Person, Bcolors
 from classes.magic import Spell
 from classes.inventory import Item
 
+print("\n\n")
+print("Name              HP                                  MP")
+print("                  _________________________           __________")
+print(Bcolors.BOLD + "Valos:   " + "460/460 |" + Bcolors.OKGREEN + "█████████████████████████" +
+      Bcolors.ENDC + Bcolors.BOLD + "|  " + "65/65  |" + Bcolors.OKBLUE + "██████████" +
+      Bcolors.ENDC + Bcolors.BOLD + "|")
+
+print("                  _________________________           __________")
+print("Valos:   460/460 |                         |  65/65  |          |")
+print("                  _________________________           __________")
+print("Valos:   460/460 |                         |  65/65  |          |")
+
 # Create Black Magic
 fire = Spell("Wild Fire", 12, 120, "black")
 lightning = Spell("Lightning Strike", 15, 150, "black")
