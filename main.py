@@ -32,7 +32,7 @@ player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity":
 player1 = Person("John: ", 3260, 130, 340, 34, player_spells, player_items)
 player2 = Person("Leah: ", 4160, 140, 280, 34, player_spells, player_items)
 player3 = Person("Joe : ", 3890, 170, 300, 34, player_spells, player_items)
-enemy = Person("Magus", 11200, 700, 525, 25, [], [])
+enemy = Person("Magus: ", 11200, 700, 525, 25, [], [])
 
 players = [player1, player2, player3]
 
@@ -44,11 +44,13 @@ print(Bcolors.FAIL + Bcolors.BOLD + "Get Ready! The battle begins!" + Bcolors.EN
 while running:
     print("======================")
     print("\n")
-    print("NAME             HP                                   MP          ")
+    print("NAME                HP                                      MP          ")
     # Printing out each player
     for player in players:
         player.get_stats()
     print("\n")
+
+    enemy.get_enemy_stats()
 
     for player in players:
         player.choose_action()
