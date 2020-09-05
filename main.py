@@ -10,13 +10,13 @@ meteor = Spell("Meteor Shower", 20, 200, "black")
 quake = Spell("Earthquake", 14, 140, "black")
 
 # Create White Magic
-cure = Spell("Cure", 12, 120, "white")
-cura = Spell("Cura", 18, 200, "white")
+cure = Spell("Cure", 12, 620, "white")
+cura = Spell("Cura", 18, 1500, "white")
 
 # Create some items
-potion = Item("Potion", "potion", "Heals 50 HP", 50)
-hipotion = Item("Hi-Potion", "potion", "Heals 100 HP", 100)
-ultrapotion = Item("Ultra Potion", "potion", "Heals 500 HP", 500)
+potion = Item("Potion", "potion", "Heals 50 HP", 250)
+hipotion = Item("Hi-Potion", "potion", "Heals 100 HP", 500)
+ultrapotion = Item("Ultra Potion", "potion", "Heals 500 HP", 1000)
 elixer = Item("Elixer", 'elixer', "Fully restores HP/MP of one party member", 9999)
 megaelixer = Item("MegaElixer", 'elixer', "Fully restores HP/MP of one party member", 9999)
 
@@ -29,10 +29,10 @@ player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity":
                 {"item": megaelixer, "quantity": 2}, {"item": grenade, "quantity": 5}]
 
 # Instantiate People
-player1 = Person("John: ", 3260, 65, 60, 34, player_spells, player_items)
-player2 = Person("Leah: ", 4160, 65, 60, 34, player_spells, player_items)
-player3 = Person("Joe : ", 3890, 65, 60, 34, player_spells, player_items)
-enemy = Person("Magus", 1200, 65, 45, 25, [], [])
+player1 = Person("John: ", 3260, 130, 60, 34, player_spells, player_items)
+player2 = Person("Leah: ", 4160, 140, 60, 34, player_spells, player_items)
+player3 = Person("Joe : ", 3890, 170, 60, 34, player_spells, player_items)
+enemy = Person("Magus", 11200, 700, 350, 25, [], [])
 
 players = [player1, player2, player3]
 
@@ -118,14 +118,11 @@ while running:
     enemy_dmg = enemy.generate_damage()
 
     # Always attack player 1 for now
-
     player1.take_damage(enemy_dmg)
     print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks for", enemy_dmg, "points of damage" + Bcolors.ENDC)
 
     print("_______________________________")
     print("Enemy HP:", Bcolors.FAIL + str(enemy.get_hp()) + "/" + str(enemy.get_max_hp()) + Bcolors.ENDC + "\n")
-    # print("Your HP:", Bcolors.OKGREEN + str(player.get_hp()) + "/" + str(player.get_max_hp()) + Bcolors.ENDC + "\n")
-    # print("Your MP:", Bcolors.OKBLUE + str(player.get_mp()) + "/" + str(player.get_max_mp()) + Bcolors.ENDC + "\n")
 
     if enemy.get_hp() == 0:
         print(Bcolors.OKGREEN + "YOU HAVE DEFEATED THE ENEMY. YOU WIN!" + Bcolors.ENDC)
