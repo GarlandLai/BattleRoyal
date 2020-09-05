@@ -1,6 +1,7 @@
 from classes.game import Person, Bcolors
 from classes.magic import Spell
 from classes.inventory import Item
+import random
 
 # Create Black Magic
 fire = Spell("Wild Fire", 25, 640, "black")
@@ -121,16 +122,12 @@ while running:
                 enemy.take_damage(item.prop)
                 print(Bcolors.FAIL + "\n" + item.name + " deals", str(item.prop), "points of damage" + Bcolors.ENDC)
 
-        enemy_choice = 1
-
+    enemy_choice = 1
+    # Enemy randomly attacks a player. Will select 0,1,2 but not 3 in below case.
+    target = random.randrange(0, 3)
     enemy_dmg = enemy.generate_damage()
-
-    # Always attack player 1 for now
-    player1.take_damage(enemy_dmg)
-    print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks for", enemy_dmg, "points of damage" + Bcolors.ENDC)
-
-    print("_______________________________")
-    print("Enemy HP:", Bcolors.FAIL + str(enemy.get_hp()) + "/" + str(enemy.get_max_hp()) + Bcolors.ENDC + "\n")
+    players[target].take_damage(enemy_dmg)
+    print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks", players[target].name, "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
 
     if enemy.get_hp() == 0:
         print(Bcolors.OKGREEN + "YOU HAVE DEFEATED THE ENEMY. YOU WIN!" + Bcolors.ENDC)
