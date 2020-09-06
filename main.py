@@ -34,9 +34,9 @@ player1 = Person("John: ", 3260, 130, 340, 34, player_spells, player_items)
 player2 = Person("Leah: ", 4160, 140, 280, 34, player_spells, player_items)
 player3 = Person("Joe : ", 3890, 170, 300, 34, player_spells, player_items)
 
-enemy1 = Person("Imp", 1250, 130, 560, 325, [], [])
-enemy2 = Person("Magus: ", 11200, 700, 525, 25, [], [])
-enemy3 = Person("Imp", 1250, 130, 560, 325, [], [])
+enemy1 = Person("Imp    ", 1250, 130, 560, 325, [], [])
+enemy2 = Person("Magus  ", 11200, 700, 525, 25, [], [])
+enemy3 = Person("Imp    ", 1250, 130, 560, 325, [], [])
 
 players = [player1, player2, player3]
 enemies = [enemy1, enemy2, enemy3]
@@ -93,8 +93,11 @@ while running:
                 player.heal(magic_dmg)
                 print(Bcolors.OKBLUE + "\n" + spell.name + " heals for ", str(magic_dmg), "HP", Bcolors.ENDC)
             elif spell.type == "black":
-                enemy.take_damage(magic_dmg)
-                print(Bcolors.OKBLUE + "\n" + spell.name + "deals", str(magic_dmg), "points of damage", Bcolors.ENDC)
+                enemy = player.choose_target(enemies)
+
+                enemies[enemy].take_damage(magic_dmg)
+                print(Bcolors.OKBLUE + "\n" + spell.name + "deals", str(magic_dmg), "points of damage to " +
+                      enemies[enemy].name, Bcolors.ENDC)
 
         elif index == 2:
             player.choose_item()
@@ -128,13 +131,16 @@ while running:
                 print(Bcolors.OKGREEN + "\n" + item.name + "fully restores HP/MP" + Bcolors.ENDC)
 
             elif item.type == "attack":
-                enemy.take_damage(item.prop)
-                print(Bcolors.FAIL + "\n" + item.name + " deals", str(item.prop), "points of damage" + Bcolors.ENDC)
+                enemy = player.choose_target(enemies)
+
+                enemies[enemy].take_damage(item.prop)
+                print(Bcolors.FAIL + "\n" + item.name + " deals", str(item.prop), "points of damage to " +
+                      enemies[enemy].name + Bcolors.ENDC)
 
     enemy_choice = 1
     # Enemy randomly attacks a player. Will select 0,1,2 but not 3 in below case.
     target = random.randrange(0, 3)
-    enemy_dmg = enemy.generate_damage()
+    enemy_dmg = enemies[0].generate_damage()
     players[target].take_damage(enemy_dmg)
     print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks", players[target].name, "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
 

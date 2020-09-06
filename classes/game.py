@@ -82,7 +82,7 @@ class Person:
     def choose_target(self, enemies):
         i = 1
         print("\n" + Bcolors.FAIL + Bcolors.BOLD + "    TARGET:" + Bcolors.ENDC)
-        for enemy in self.enemies:
+        for enemy in enemies:
             print("        " + str(i) + ".", enemy.name)
             i += 1
         choice = int(input("    Choose target:")) - 1
