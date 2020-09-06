@@ -144,9 +144,21 @@ while running:
     players[target].take_damage(enemy_dmg)
     print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks", players[target].name, "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
 
-    if enemy.get_hp() == 0:
+    defeated_enemies = 0
+    defeated_player = 0
+
+    for enemy in enemies:
+        if enemy.get_hp() == 0:
+            defeated_enemies += 1
+
+    for player in players:
+        if player.get_hp() == 0:
+            defeated_player += 1
+
+    if defeated_enemies == 2:
         print(Bcolors.OKGREEN + "YOU HAVE DEFEATED THE ENEMY. YOU WIN!" + Bcolors.ENDC)
         running = False
-    elif player.get_hp() == 0:
-        print(Bcolors.FAIL + "YOU HAVE 0 HP. YOU HAVE BEEN DEFEATED!" + Bcolors.ENDC)
+
+    elif defeated_player == 2:
+        print(Bcolors.FAIL + "YOU HAVE BEEN DEFEATED BY YOUR ENEMIES!" + Bcolors.ENDC)
         running = False
