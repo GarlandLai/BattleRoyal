@@ -33,9 +33,13 @@ player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity":
 player1 = Person("John: ", 3260, 130, 340, 34, player_spells, player_items)
 player2 = Person("Leah: ", 4160, 140, 280, 34, player_spells, player_items)
 player3 = Person("Joe : ", 3890, 170, 300, 34, player_spells, player_items)
-enemy = Person("Magus: ", 11200, 700, 525, 25, [], [])
+
+enemy1 = Person("Imp", 1250, 130, 560, 325, [], [])
+enemy2 = Person("Magus: ", 11200, 700, 525, 25, [], [])
+enemy3 = Person("Imp", 1250, 130, 560, 325, [], [])
 
 players = [player1, player2, player3]
+enemies = [enemy1, enemy2, enemy3]
 
 running = True
 i = 0
@@ -51,7 +55,8 @@ while running:
         player.get_stats()
     print("\n")
 
-    enemy.get_enemy_stats()
+    for enemy in enemies:
+        enemy.get_enemy_stats()
 
     for player in players:
         player.choose_action()
@@ -60,8 +65,12 @@ while running:
 
         if index == 0:
             dmg = player.generate_damage()
-            enemy.take_damage(dmg)
-            print(Bcolors.OKBLUE + Bcolors.BOLD + "You attacked for", dmg, "points of damage." + Bcolors.ENDC)
+            # Player choose which enemy to attack
+            enemy = player.choose_target(enemies)
+            enemies[enemy].take_damage(dmg)
+
+            print(Bcolors.OKBLUE + Bcolors.BOLD + "You attacked " + enemies[enemy].name + " for", dmg,
+                  "points of damage." + Bcolors.ENDC)
         elif index == 1:
             player.choose_magic()
             magic_choice = int(input("    Choose magic: ")) - 1
