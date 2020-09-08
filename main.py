@@ -71,6 +71,11 @@ while running:
 
             print(Bcolors.OKBLUE + Bcolors.BOLD + "You attacked " + enemies[enemy].name + " for", dmg,
                   "points of damage." + Bcolors.ENDC)
+
+            if enemies[enemy].get_hp() == 0:
+                print(enemies[enemy].name + " has died!")
+                del enemies[enemy]
+
         elif index == 1:
             player.choose_magic()
             magic_choice = int(input("    Choose magic: ")) - 1
@@ -98,6 +103,10 @@ while running:
                 enemies[enemy].take_damage(magic_dmg)
                 print(Bcolors.OKBLUE + "\n" + spell.name + "deals", str(magic_dmg), "points of damage to " +
                       enemies[enemy].name, Bcolors.ENDC)
+
+                if enemies[enemy].get_hp() == 0:
+                    print(enemies[enemy].name + " has died!")
+                    del enemies[enemy]
 
         elif index == 2:
             player.choose_item()
@@ -137,19 +146,25 @@ while running:
                 print(Bcolors.FAIL + "\n" + item.name + " deals", str(item.prop), "points of damage to " +
                       enemies[enemy].name + Bcolors.ENDC)
 
+                if enemies[enemy].get_hp() == 0:
+                    print(enemies[enemy].name + " has died!")
+                    del enemies[enemy]
+
     enemy_choice = 1
     # Enemy randomly attacks a player. Will select 0,1,2 but not 3 in below case.
     target = random.randrange(0, 3)
     enemy_dmg = enemies[0].generate_damage()
     players[target].take_damage(enemy_dmg)
-    print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks", players[target].name, "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
+    print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks", players[target].name, "for", enemy_dmg,
+          "points of damage" + Bcolors.ENDC)
 
     defeated_enemies = 0
     defeated_player = 0
 
     for enemy in enemies:
-        if enemy.get_hp() == 0:
-            defeated_enemies += 1
+        if enemy.get_hp() != 0:
+            if enemy.get_hp() == 0:
+                defeated_enemies += 1
 
     for player in players:
         if player.get_hp() == 0:
