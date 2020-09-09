@@ -13,6 +13,7 @@ quake = Spell("Earthquake", 28, 850, "black")
 # Create White Magic
 cure = Spell("Cure", 25, 620, "white")
 cura = Spell("Cura", 32, 1500, "white")
+curaga = Spell("Curaga", 50, 6000, "white")
 
 # Create some items
 potion = Item("Potion", "potion", "Heals 50 HP", 250)
@@ -25,7 +26,7 @@ grenade = Item("Grenade", 'attack', "Deals 500 damage", 500)
 
 
 player_spells = [fire, lightning, water, meteor, quake, cure, cura]
-enemy_spells = [fire, meteor, cure]
+enemy_spells = [fire, meteor, curaga]
 player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity": 5},
                 {"item": ultrapotion, "quantity": 5}, {"item": elixer, "quantity": 5},
                 {"item": megaelixer, "quantity": 2}, {"item": grenade, "quantity": 5}]
@@ -179,6 +180,7 @@ while running:
         print(Bcolors.FAIL + "YOU HAVE BEEN DEFEATED BY YOUR ENEMIES!" + Bcolors.ENDC)
         running = False
 
+    print("\n")
     # Enemy Attack phase
     for enemy in enemies:
         enemy_choice = random.randrange(0, 2)
@@ -197,7 +199,7 @@ while running:
 
             if spell.type == "white":
                 enemy.heal(magic_dmg)
-                print(Bcolors.OKBLUE + "\n" + spell.name + " heals " + enemy.name.replace(" ", "") + "for ",
+                print(Bcolors.OKBLUE + spell.name + " heals " + enemy.name.replace(" ", "") + "for ",
                       str(magic_dmg), "HP", Bcolors.ENDC)
 
             elif spell.type == "black":
@@ -209,7 +211,7 @@ while running:
 
                 if players[target].get_hp() == 0:
                     print(players[target].name.replace(" ", "") + " has died!")
-                    del players[players]
+                    del players[target]
 
 
             # print("Enemy chose", spell.name, " and damage is", magic_dmg)
