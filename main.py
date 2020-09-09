@@ -180,7 +180,7 @@ while running:
 
     # Enemy Attack phase
     for enemy in enemies:
-        enemy_choice = random.randrange(0,3)
+        enemy_choice = random.randrange(0, 3)
 
         if enemy_choice == 0:
             # Chose attack
@@ -190,3 +190,6 @@ while running:
             print(Bcolors.FAIL + Bcolors.BOLD + enemy.name.replace(" ", '') + " attacks", players[target].name,
                   '' "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
 
+        elif enemy_choice == 1:
+            spell, magic_dmg = enemy.choose_enemy_spell()
+            print("Enemy chose", spell, " and damage is", magic_dmg)

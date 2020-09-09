@@ -164,3 +164,13 @@ class Person:
               Bcolors.ENDC + Bcolors.BOLD + "|    " + current_mp + "  |" +
               Bcolors.OKBLUE + mp_bar +
               Bcolors.ENDC + Bcolors.BOLD + "|")
+
+    def choose_enemy_spell(self):
+        magic_choice = random.randrange(0, len(self.magic))
+        spell = self.magic[magic_choice]
+        magic_dmg = spell.generate_damage()
+
+        if self.mp < spell.cost:
+            self.choose_enemy_spell()
+        else:
+            return spell, magic_dmg
