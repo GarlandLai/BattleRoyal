@@ -25,6 +25,7 @@ grenade = Item("Grenade", 'attack', "Deals 500 damage", 500)
 
 
 player_spells = [fire, lightning, water, meteor, quake, cure, cura]
+enemy_spells = [fire, meteor, cure]
 player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity": 5},
                 {"item": ultrapotion, "quantity": 5}, {"item": elixer, "quantity": 5},
                 {"item": megaelixer, "quantity": 2}, {"item": grenade, "quantity": 5}]
@@ -34,9 +35,9 @@ player1 = Person("John: ", 3260, 130, 340, 34, player_spells, player_items)
 player2 = Person("Leah: ", 4160, 140, 280, 34, player_spells, player_items)
 player3 = Person("Joe : ", 3890, 170, 300, 34, player_spells, player_items)
 
-enemy1 = Person("Imp    ", 1250, 130, 560, 325, [], [])
-enemy2 = Person("Magus  ", 11200, 700, 525, 25, [], [])
-enemy3 = Person("Imp    ", 1250, 130, 560, 325, [], [])
+enemy1 = Person("Imp    ", 1250, 130, 560, 325, enemy_spells, [])
+enemy2 = Person("Magus  ", 11200, 700, 525, 25, enemy_spells, [])
+enemy3 = Person("Imp    ", 1250, 130, 560, 325, enemy_spells, [])
 
 players = [player1, player2, player3]
 enemies = [enemy1, enemy2, enemy3]
@@ -180,7 +181,7 @@ while running:
 
     # Enemy Attack phase
     for enemy in enemies:
-        enemy_choice = random.randrange(0, 3)
+        enemy_choice = random.randrange(0, 2)
 
         if enemy_choice == 0:
             # Chose attack
@@ -192,4 +193,23 @@ while running:
 
         elif enemy_choice == 1:
             spell, magic_dmg = enemy.choose_enemy_spell()
-            print("Enemy chose", spell, " and damage is", magic_dmg)
+            enemy.reduce_mp(spell.cost)
+
+            if spell.type == "white":
+                enemy.heal(magic_dmg)
+                print(Bcolors.OKBLUE + "\n" + spell.name + " heals " + enemy.name.replace(" ", "") + "for ",
+                      str(magic_dmg), "HP", Bcolors.ENDC)
+
+            elif spell.type == "black":
+                target = random.randrange(0, 3)
+
+                players[target].take_damage(magic_dmg)
+                print(Bcolors.OKBLUE + "\n" + enemy.name.replace(" ", "") + "'s " + spell.name + "deals", str(magic_dmg), "points of damage to " +
+                      players[target].name.replace(" ", ""), Bcolors.ENDC)
+
+                if players[target].get_hp() == 0:
+                    print(players[target].name.replace(" ", "") + " has died!")
+                    del players[players]
+
+
+            # print("Enemy chose", spell.name, " and damage is", magic_dmg)
