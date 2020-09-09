@@ -150,16 +150,14 @@ while running:
                     print(enemies[enemy].name.replace(" ", "") + " has died!")
                     del enemies[enemy]
 
-    enemy_choice = 1
-    # Enemy randomly attacks a player. Will select 0,1,2 but not 3 in below case.
+    # Check to see if battle is over
+    defeated_enemies = 0
+    defeated_player = 0  # Enemy randomly attacks a player. Will select 0,1,2 but not 3 in below case.
     target = random.randrange(0, 3)
     enemy_dmg = enemies[0].generate_damage()
     players[target].take_damage(enemy_dmg)
-    print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks", players[target].name, "for", enemy_dmg,
-          "points of damage" + Bcolors.ENDC)
-
-    defeated_enemies = 0
-    defeated_player = 0
+    print(Bcolors.FAIL + Bcolors.BOLD + "Enemy attacks", players[target].name, "for", enemy_dmg, "points of damage"
+          + Bcolors.ENDC)
 
     for enemy in enemies:
         if enemy.get_hp() != 0:
@@ -170,10 +168,25 @@ while running:
         if player.get_hp() == 0:
             defeated_player += 1
 
+    # Check if player won
     if defeated_enemies == 2:
         print(Bcolors.OKGREEN + "YOU HAVE DEFEATED THE ENEMY. YOU WIN!" + Bcolors.ENDC)
         running = False
 
+    # Check if enemy won
     elif defeated_player == 2:
         print(Bcolors.FAIL + "YOU HAVE BEEN DEFEATED BY YOUR ENEMIES!" + Bcolors.ENDC)
         running = False
+
+    # Enemy Attack phase
+    for enemy in enemies:
+        enemy_choice = random.randrange(0,3)
+
+        if enemy_choice == 0:
+            # Chose attack
+            target = random.randrange(0, 3)
+            enemy_dmg = enemies[0].generate_damage()
+            players[target].take_damage(enemy_dmg)
+            print(Bcolors.FAIL + Bcolors.BOLD + enemy.name.replace(" ", '') + " attacks", players[target].name,
+                  '' "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
+
