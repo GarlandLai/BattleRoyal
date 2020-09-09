@@ -188,7 +188,7 @@ while running:
         if enemy_choice == 0:
             # Chose attack
             target = random.randrange(0, 3)
-            enemy_dmg = enemies[0].generate_damage()
+            enemy_dmg = enemies.generate_damage()
             players[target].take_damage(enemy_dmg)
             print(Bcolors.FAIL + Bcolors.BOLD + enemy.name.replace(" ", '') + " attacks", players[target].name,
                   '' "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
