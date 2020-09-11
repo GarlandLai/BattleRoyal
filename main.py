@@ -195,6 +195,7 @@ while running:
     print("\n")
 
     # Enemy Attack phase
+    # Do we need to use players length instead of hard coding numbers?
     for enemy in enemies:
         enemy_choice = random.randrange(0, 2)
 
