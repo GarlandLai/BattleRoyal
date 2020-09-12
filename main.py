@@ -197,11 +197,13 @@ while running:
     # Enemy Attack phase
     # Do we need to use players length instead of hard coding numbers?
     for enemy in enemies:
+        print("players list", players)
         enemy_choice = random.randrange(0, 2)
 
         if enemy_choice == 0:
             # Chose attack
             target = random.randrange(0, 3)
+            print("targeted player", target)
             enemy_dmg = enemy.generate_damage()
             players[target].take_damage(enemy_dmg)
             print(Bcolors.FAIL + Bcolors.BOLD + enemy.name.replace(" ", '') + " attacks", players[target].name,
