@@ -32,9 +32,9 @@ player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity":
                 {"item": megaelixer, "quantity": 2}, {"item": grenade, "quantity": 5}]
 
 # Instantiate People
-player1 = Person("John: ", 100, 130, 340, 34, player_spells, player_items)
-player2 = Person("Leah: ", 100, 140, 280, 34, player_spells, player_items)
-player3 = Person("Joe : ", 100, 170, 300, 34, player_spells, player_items)
+player1 = Person("John: ", 3000, 130, 340, 34, player_spells, player_items)
+player2 = Person("Leah: ", 3000, 140, 280, 34, player_spells, player_items)
+player3 = Person("Joe : ", 3000, 170, 300, 34, player_spells, player_items)
 
 enemy1 = Person("Imp    ", 1250, 130, 560, 325, enemy_spells, [])
 enemy2 = Person("Magus  ", 11200, 700, 525, 25, enemy_spells, [])
@@ -158,31 +158,6 @@ while running:
                     if enemies[enemy].get_hp() == 0:
                         print(enemies[enemy].name.replace(" ", "") + " has died!")
                         del enemies[enemy]
-
-    # Check if battle is over
-    # defeated_enemies = 0
-    # defeated_players = 0
-
-    # print(len(enemies))
-
-    # for enemy in enemies:
-    #     if enemy.get_hp() == 0:
-    #         print("enemy has 0 health")
-    #         defeated_enemies += 1
-    #         print(defeated_enemies)
-    #
-    # for player in players:
-    #     if player.get_hp() == 0:
-    #         defeated_players += 1
-
-    # Check if Player won
-    # if len(enemies) == 0:
-    #     print(Bcolors.OKGREEN + "You win!" + Bcolors.ENDC)
-    #     running = False
-
-    # if defeated_enemies == 2:
-    #     print(Bcolors.OKGREEN + "You win!" + Bcolors.ENDC)
-    #     running = False
 
     # Check to see if enemy wins
     if len(players) == 0:
