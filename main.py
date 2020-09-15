@@ -198,6 +198,12 @@ while running:
     # Do we need to use players length instead of hard coding numbers?
     for enemy in enemies:
         print("players list", players)
+
+        # Maybe check here to see if players are dead
+        if len(players) == 0:
+            print(Bcolors.FAIL + "Your enemies have defeated you!" + Bcolors.ENDC)
+            running = False
+
         enemy_choice = random.randrange(0, 2)
 
         if enemy_choice == 0:
@@ -209,6 +215,11 @@ while running:
             print(Bcolors.FAIL + Bcolors.BOLD + enemy.name.replace(" ", '') + " attacks", players[target].name,
                   '' "for", enemy_dmg, "points of damage" + Bcolors.ENDC)
 
+            # Need to remove players if its attack?
+            if players[target].get_hp() == 0:
+                print(players[target].name.replace(" ", "") + " has died!")
+                del players[target]
+
         elif enemy_choice == 1:
             spell, magic_dmg = enemy.choose_enemy_spell()
             enemy.reduce_mp(spell.cost)
@@ -219,8 +230,8 @@ while running:
                       str(magic_dmg), "HP", Bcolors.ENDC)
 
             elif spell.type == "black":
-                target = random.randrange(0, 3)
-
+                target = random.randrange(0, len(players))
+                print("target List", target)
                 players[target].take_damage(magic_dmg)
                 print(Bcolors.OKBLUE + "\n" + enemy.name.replace(" ", "") + "'s " + spell.name + "deals", str(magic_dmg), "points of damage to " +
                       players[target].name.replace(" ", ""), Bcolors.ENDC)
