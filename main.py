@@ -92,6 +92,10 @@ while running:
                 if magic_choice == -1:
                     continue
 
+                if magic_choice > len(player.magic) - 1:
+                    print("Wrong input. You lose your turn")
+                    continue
+
                 spell = player.magic[magic_choice]
                 magic_dmg = spell.generate_damage()
 
@@ -122,6 +126,10 @@ while running:
                 item_choice = int(input("    Choose item: ")) - 1
 
                 if item_choice == -1:
+                    continue
+
+                if item_choice > len(player.items) - 1:
+                    print("Big mistake. You lose your turn for wrong input.")
                     continue
 
                 # Check to make sure we have item
