@@ -158,14 +158,9 @@ while running:
                     if enemies[enemy].get_hp() == 0:
                         print(enemies[enemy].name.replace(" ", "") + " has died!")
                         del enemies[enemy]
-
-    # Check to see if enemy wins
-    # if len(players) == 0:
-    #     print(Bcolors.FAIL + "Your enemies have defeated you!" + Bcolors.ENDC)
-    #     running = False
-    # elif defeated_players == 2:
-    #     print(bcolors.FAIL + "Your enemies have defeated you!" + bcolors.ENDC)
-    #     running = False
+            else:
+                print("Incorrect input. You have lost your turn!")
+                continue
 
     print("\n")
 
@@ -174,7 +169,7 @@ while running:
     for enemy in enemies:
         # Maybe check here to see if players are dead
         if len(players) == 0:
-            print(Bcolors.FAIL + "1Your enemies have defeated you!" + Bcolors.ENDC)
+            print(Bcolors.FAIL + "Your enemies have defeated you!" + Bcolors.ENDC)
             running = False
 
         enemy_choice = random.randrange(0, 2)
