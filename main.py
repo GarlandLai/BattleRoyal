@@ -32,9 +32,9 @@ player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity":
                 {"item": megaelixer, "quantity": 2}, {"item": grenade, "quantity": 5}]
 
 # Instantiate People
-player1 = Person("John: ", 3000, 130, 340, 34, player_spells, player_items)
-player2 = Person("Leah: ", 3000, 140, 280, 34, player_spells, player_items)
-player3 = Person("Joe : ", 3000, 170, 300, 34, player_spells, player_items)
+player1 = Person("John: ", 1000, 130, 340, 34, player_spells, player_items)
+player2 = Person("Leah: ", 1000, 140, 280, 34, player_spells, player_items)
+player3 = Person("Joe : ", 1000, 170, 300, 34, player_spells, player_items)
 
 enemy1 = Person("Imp    ", 1250, 130, 560, 325, enemy_spells, [])
 enemy2 = Person("Magus  ", 11200, 700, 525, 25, enemy_spells, [])
@@ -160,9 +160,9 @@ while running:
                         del enemies[enemy]
 
     # Check to see if enemy wins
-    if len(players) == 0:
-        print(Bcolors.FAIL + "Your enemies have defeated you!" + Bcolors.ENDC)
-        running = False
+    # if len(players) == 0:
+    #     print(Bcolors.FAIL + "Your enemies have defeated you!" + Bcolors.ENDC)
+    #     running = False
     # elif defeated_players == 2:
     #     print(bcolors.FAIL + "Your enemies have defeated you!" + bcolors.ENDC)
     #     running = False
@@ -183,8 +183,14 @@ while running:
 
         if enemy_choice == 0:
             # Chose attack
-            target = random.randrange(0, 3)
-            print("targeted player", target)
+            target = ''
+            if len(players) == 1:
+                target = 0
+            else:
+                target = random.randrange(0, len(players)) -1
+
+            print("target", target)
+            # print("targeted player", players[target])
             enemy_dmg = enemy.generate_damage()
             players[target].take_damage(enemy_dmg)
             print(Bcolors.FAIL + Bcolors.BOLD + enemy.name.replace(" ", '') + " attacks", players[target].name,
@@ -205,7 +211,12 @@ while running:
                       str(magic_dmg), "HP", Bcolors.ENDC)
 
             elif spell.type == "black":
-                target = random.randrange(0, len(players))
+                # target = random.randrange(0, 3)
+                target = ''
+                if len(players) == 1:
+                    target = 0
+                else:
+                    target = random.randrange(0, len(players))
                 print("target List", target)
                 players[target].take_damage(magic_dmg)
                 print(Bcolors.OKBLUE + "\n" + enemy.name.replace(" ", "") + "'s " + spell.name + "deals", str(magic_dmg), "points of damage to " +
